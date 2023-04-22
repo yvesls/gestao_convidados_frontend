@@ -1,0 +1,48 @@
+body {
+    overflow-y: hidden;
+}
+
+main {
+    width: 101.1vw;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.nav-config {
+    color: white;
+    height: 100vh;
+    background-color: #3F1010;
+}
+
+.navbar-nav > li:hover {
+    cursor: pointer;
+    background-color: #a52a2a;
+}
+
+.navbar-nav > li:active {
+    background-color: #a31212;
+}
+
+.dropdown-menu.dropdown-menu {
+    background-color: #a52a2a;
+    width: 92.5%;
+}
+
+.dropdown-item.dropdown-item:hover {
+    background-color: #3F1010;
+}
+
+.dropdown-item.dropdown-item:active {
+    background-color: #611c1c;
+}
+
+.principal {
+    background-color: #d3d3d3;
+}
+
+.thead-color {
+    background-color: #3F1010;
+    color: white;
+}
