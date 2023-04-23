@@ -15,15 +15,15 @@
         <nav class="p-0 m-0 nav-config col-md-3">
             <a href="home.html"><h2 class="p-0 m-0 text-light m-auto text-center m-3 py-5 px-3">Gestão de Convidados</h2></a>
             <ul class="p-0 pt-5 navbar-nav text-center m-auto d-flex flex-column w-100">
-                <li class="py-3 active">
+                <li id="exibirDivConvidados" class="py-3 active">
                     Convidados
                 </li>
                 <li class="py-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Adicionar
                 </li>
                 <div class="dropdown-menu py-3" aria-labelledby="navbarDropdown">
-                    <span class="dropdown-item text-white px-4">Convidado</span>
-                    <span class="dropdown-item text-white px-4">Tipo de convidado</span>
+                    <span id="exibirDivAddConvidado" class="dropdown-item text-white px-4">Convidado</span>
+                    <span id="exibirDivAddTipo" class="dropdown-item text-white px-4">Tipo de convidado</span>
                 </div>
             </ul>
         </nav>
@@ -62,90 +62,54 @@
                         </tr>
                     </thead>
                     <tbody class="col-12">
-                        <tr>
-                            <th>Afonso Cláudio Pereira</th>
-                            <td>(31)93988-8798</td>
-                            <td>Vip</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Maria Silva Pinheiros</th>
-                            <td>(31)94538-8728</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox"/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
-                        <tr>
-                            <th>Gilberto Marcos da Silva</th>
-                            <td>(31)96775-0954</td>
-                            <td>Pista</td>
-                            <td><input class="" type="checkbox" checked/></td>
-                        </tr>
+                        
                     </tbody>
                 </table>
                 <div class="py-3 div-dados d-flex justify-content-between p-0 m-0">
                     <span class="col-4 p-0 m-0">Lista de convidados</span>
                     <span class="col-3 p-0 m-0"></span>
                     <span class="col-5 p-0 m-0 d-flex justify-content-end"><button type="button" class="btn btn-primary">Todos presentes</button></td></span>
+                </div>
+            </div>
+            <div class="col-10 div-convidado d-none shadow px-3 my-5 bg-white rounded">
+                <div class="p-5">
+                    <form class="row g-3 d-flex justify-content-between flex-wrap">
+                        <div class="p-0 m-0 col-6 py-3 pr-5">
+                            <label for="nomeConvidado" class="visually-hidden">Nome do convidado</label>
+                            <input type="text" class="form-control" id="nomeConvidado" placeholder="Reginaldo Pereira">
+                        </div>
+                        <div class="p-0 m-0 col-5 py-3">
+                            <label for="telefoneConvidado" class="visually-hidden">Telefone</label>
+                            <input type="text" class="form-control" id="telefoneConvidado" placeholder="Telefone">
+                        </div>
+                        <div class="p-0 m-0 col-8 py-3 pr-5">
+                            <select class="p-0 m-0 form-select form-control" id="tipo" aria-label="Default select example">
+                                <option selected>Tipo</option>
+                                <option value="1">Vip</option>
+                                <option value="2">Pista</option>
+                            </select>
+                        </div>
+                        <div class="p-0 m-0 col-2 py-4 pr-2">
+                            <label for="presente" class="visually-hidden">Presente</label>
+                            <input class="" type="checkbox" id="presente"/>
+                        </div>
+                        <div class="p-0 m-0 col-2 py-3 pr-2">
+                            <button type="button" class="btn btn-primary mb-3">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-10 div-tipo d-none shadow px-3 my-5 bg-white rounded">
+                <div class="p-5 col-12 d-flex justify-content-center">
+                    <form class="d-flex justify-content-around">
+                        <div class="p-0 m-0 col-8 pr-5 pt-3">
+                            <label for="tipoConvidado" class="visually-hidden">Tipo de convidado</label>
+                            <input type="text" class="form-control" id="tipoConvidado" placeholder="Vip">
+                        </div>
+                        <div class="p-0 m-0 col-4 pt-5">
+                            <button type="button" class="btn btn-primary mb-3">Registrar</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

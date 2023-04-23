@@ -68,6 +68,11 @@ input[type='checkbox'] {
     overflow-y: scroll;
 }
 
+.div-convidado, .div-tipo {
+    display: block;
+    height: 20rem;
+}
+
 #filtroDropdownExibicao {
     z-index: 3;
     width: auto;

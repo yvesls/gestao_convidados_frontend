@@ -1,6 +1,6 @@
 
 /* animação e exibição dos forms */
-const abrirRegistrar = $("#abrirRegistrar").click(() => {
+$("#abrirRegistrar").click(() => {
     $("#formLogar").animate({
         opacity: '0.0'},
         "slow"
@@ -11,7 +11,7 @@ const abrirRegistrar = $("#abrirRegistrar").click(() => {
     ).removeClass("d-none");
 });
 
-const abrirLogar = $("#abrirLogar").click(() => {
+$("#abrirLogar").click(() => {
     $("#formLogar").animate({
         opacity: '1'},
         "slow"
@@ -23,7 +23,7 @@ const abrirLogar = $("#abrirLogar").click(() => {
 });
 
 const urlApi = "http://localhost:8080";
-const logar = $("#logar").click(async () => {
+$("#logar").click(async () => {
     //$("#carregando").removeClass("d-none").innerHTML = "<div class='spinner-grow text-atualizar m-auto' role='status'><span class='visually-hidden'>Carregando...</span></div>";
     const nome = $("#inputName").val();
     const senha = $("#inputPassword").val();
@@ -49,12 +49,13 @@ const logar = $("#logar").click(async () => {
 
     if (response.ok) {
         window.location = "/src/home.html";
+        console.log(response.headers.get(key))
     } else {
         window.location = "../../index.html";
     }
 
     window.setTimeout(function () {
-        //window.location = "../../index.html";
+        window.location = "../../index.html";
     }, 3000);
 });
 
