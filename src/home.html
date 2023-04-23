@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link href="css/home.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+    <link href="css/home.css" rel="stylesheet">
     <script src="js/home.js" defer></script>
 </head>
 <body>
@@ -15,7 +15,7 @@
         <nav class="p-0 m-0 nav-config col-md-3">
             <a href="home.html"><h2 class="p-0 m-0 text-light m-auto text-center m-3 py-5 px-3">Gestão de Convidados</h2></a>
             <ul class="p-0 pt-5 navbar-nav text-center m-auto d-flex flex-column w-100">
-                <li class="py-3">
+                <li class="py-3 active">
                     Convidados
                 </li>
                 <li class="py-3 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -27,10 +27,32 @@
                 </div>
             </ul>
         </nav>
-        <section class="p-0 m-0 principal col-md-9 d-flex color-dark justify-content-center">
-            <div class="col-10 shadow p-3 my-5 bg-white rounded text-center">
-                <table class="table table-hover">
-                    <caption>Lista de convidados</caption>
+        <section class="p-0 m-0 principal col-md-9 d-flex justify-content-center">
+            <div class="col-10 div-table shadow px-3 my-5 bg-white rounded">
+                <div class="div-filtro bg-white pt-3 pb-3">
+                   <div class="d-flex col-12 m-0 p-0">
+                        <div class="col-lg-8 col-7 p-0 m-0 d-flex justify-content-start">
+                            <div class="p-0 m-0 d-flex justify-content-start">
+                                <label for="inputPassword2" class="d-none">Nome</label>
+                                <input type="text" class="form-control" id="inputProcurar" placeholder="Nome">
+                            </div>
+                            <div class="p-0 m-0 ml-2">
+                                <button type="submit" class="btn btn-primary">Procurar</button>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-3">
+                            <button type="button" class="btn btn-primary">Listar todos</button></td>
+                        </div>
+                        <button class="btn m-auto rounded col-2 d-flex justify-content-center dropdown-toggle" href="#" id="filtroDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Tipo
+                        </button>
+                        <div id="filtroDropdownExibicao" class="dropdown-menu py-3" aria-labelledby="filtroDropdown ">
+                            <span class="dropdown-item text-white px-4">Vip</span>
+                            <span class="dropdown-item text-white px-4">Pista</span>
+                        </div>
+                   </div>
+                </div>
+                <table class="table table-hover text-center">
                     <thead class="thead-color">
                         <tr>
                             <th scope="col">Nome</th>
@@ -39,27 +61,92 @@
                             <th scope="col">Presente</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="col-12">
                         <tr>
                             <th>Afonso Cláudio Pereira</th>
                             <td>(31)93988-8798</td>
                             <td>Vip</td>
-                            <td><input type="checkbox" class="form-check-input" id="exampleCheck1" checked="true"></td>
+                            <td><input class="" type="checkbox" checked/></td>
                         </tr>
                         <tr>
                             <th>Maria Silva Pinheiros</th>
                             <td>(31)94538-8728</td>
                             <td>Pista</td>
-                            <td><input type="checkbox" class="form-check-input" id="exampleCheck1" checked="false"></td>
+                            <td><input class="" type="checkbox"/></td>
                         </tr>
                         <tr>
                             <th>Gilberto Marcos da Silva</th>
                             <td>(31)96775-0954</td>
                             <td>Pista</td>
-                            <td><input type="checkbox" class="form-check-input" id="exampleCheck1" checked="true"></td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
+                        </tr>
+                        <tr>
+                            <th>Gilberto Marcos da Silva</th>
+                            <td>(31)96775-0954</td>
+                            <td>Pista</td>
+                            <td><input class="" type="checkbox" checked/></td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="py-3 div-dados d-flex justify-content-between p-0 m-0">
+                    <span class="col-4 p-0 m-0">Lista de convidados</span>
+                    <span class="col-3 p-0 m-0"></span>
+                    <span class="col-5 p-0 m-0 d-flex justify-content-end"><button type="button" class="btn btn-primary">Todos presentes</button></td></span>
+                </div>
             </div>
         </section>
     </main>
