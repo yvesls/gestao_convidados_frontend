@@ -14,19 +14,18 @@
     <main>
         <img class="mb-4" src="imagens/logo.png" alt="gestão de convidados" width="160" height="160">
         <h1 class="h3 mb-3 font-weight-normal">Gestão de Convidados</h1>
-        <form class="form-signin" id="formLogar">
+        <form action="" class="form-signin" id="formLogar">
             <label for="inputName" class="sr-only">Indentificador de usuário</label>
             <input type="name" id="inputName" class="form-control" placeholder="Indentificador de usuário" required autofocus>
             <label for="inputPassword" class="sr-only">Senha</label>
             <input type="password" id="inputPassword" class="form-control" placeholder="Senha" required>
             <div  class="mt-2 mb-3">
-                <a href="#" id="abrirRegistrar">Registrar-se</a>
+                <a class="color-primary" id="abrirRegistrar" href="#">Registrar-se</a>
             </div>
-            <button class="btn btn-lg btn-primary btn-block" type="btn" id="logar">Login</button>
-            
-          </form>
+            <input class="btn btn-lg btn-primary btn-block" value="Logar" type="submit" id="logar"/>
+        </form>
 
-          <form class="form-signin opacity-0 d-none" id="formRegistrar">
+        <form action="" class="form-signin opacity-0 d-none" id="formRegistrar">
             <label for="inputNameR" class="sr-only">Indentificador de usuário</label>
             <input type="name" id="inputNameR" class="form-control" placeholder="Indentificador de usuário" required autofocus>
             <label for="inputPasswordR" class="sr-only">Senha</label>
@@ -35,10 +34,10 @@
                 <a class="color-dark-blue" href="#" id="abrirLogar">Logar</a>
             </div>
             <button class="btn btn-lg btn-dark-blue btn-block text-white" type="btn" id="registrar">Registrar</button>
-          </form>
+        </form>
           
-          <div id="carregando" class="d-none carregando-position"></div>
-          <p class="mt-5 mb-3 text-muted">&copy; 2023. by Yves Lima</p>
+        <div id="carregando" class="d-none carregando-position"></div>
+        <p class="mt-5 mb-3 text-muted">&copy; 2023. by Yves Lima</p>
     </main>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

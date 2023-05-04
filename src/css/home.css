@@ -64,7 +64,7 @@ input[type='checkbox'] {
 
 .div-table {
     display: block;
-    height: 35rem;
+    height: 36rem;
     overflow-y: scroll;
 }
 
@@ -97,6 +97,11 @@ tbody {
     margin-top: 70px;
 }
 
+.table-height {
+    min-height: 22rem;
+    max-height: 22rem;
+}
+
 .dropdown-menu {
     z-index: 6;
 }
@@ -117,4 +122,19 @@ tbody {
     position: sticky;
     bottom: 0;
     z-index: 7;
+}
+
+.btn-primary.btn-primary.btn-primary {
+    background-color: #611c1c;
+    border-color: #611c1c;
+}
+
+.btn-primary.btn-primary.btn-primary:hover {
+    background-color: #a31212;
+}
+
+.btn-primary.btn-primary.btn-primary:active, .btn-primary.btn-primary.btn-primary:focus {
+    background-color: #a31212;
+    box-shadow: #a31212;
+    box-shadow: none;
 }

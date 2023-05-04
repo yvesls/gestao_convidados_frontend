@@ -28,7 +28,7 @@
             </ul>
         </nav>
         <section class="p-0 m-0 principal col-md-9 d-flex justify-content-center">
-            <div class="col-10 div-table shadow px-3 my-5 bg-white rounded">
+            <div class="col-10 div-table shadow px-3 my-5 bg-white rounded d-flex flex-column">
                 <div class="div-filtro bg-white pt-3 pb-3">
                    <div class="d-flex col-12 m-0 p-0">
                         <div class="col-lg-8 col-7 p-0 m-0 d-flex justify-content-start">
@@ -37,64 +37,74 @@
                                 <input type="text" class="form-control" id="inputProcurar" placeholder="Nome">
                             </div>
                             <div class="p-0 m-0 ml-2">
-                                <button type="submit" class="btn btn-primary">Procurar</button>
+                                <button id="btnProcurar" class="btn btn-primary">Procurar</button>
                             </div>
                         </div>
                         <div class="col-lg-2 col-3">
-                            <button type="button" class="btn btn-primary">Listar todos</button></td>
+                            <button type="button" class="btn btn-primary" id="listarTodos">Listar todos</button></td>
                         </div>
                         <button class="btn m-auto rounded col-2 d-flex justify-content-center dropdown-toggle" href="#" id="filtroDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Tipo
                         </button>
                         <div id="filtroDropdownExibicao" class="dropdown-menu py-3" aria-labelledby="filtroDropdown ">
-                            <span class="dropdown-item text-white px-4">Vip</span>
-                            <span class="dropdown-item text-white px-4">Pista</span>
+
                         </div>
                    </div>
                 </div>
-                <table class="table table-hover text-center">
-                    <thead class="thead-color">
-                        <tr>
-                            <th scope="col">Nome</th>
-                            <th scope="col">Telefone</th>
-                            <th scope="col">Tipo</th>
-                            <th scope="col">Presente</th>
-                        </tr>
-                    </thead>
-                    <tbody class="col-12">
-                        
-                    </tbody>
-                </table>
-                <div class="py-3 div-dados d-flex justify-content-between p-0 m-0">
-                    <span class="col-4 p-0 m-0">Lista de convidados</span>
-                    <span class="col-3 p-0 m-0"></span>
-                    <span class="col-5 p-0 m-0 d-flex justify-content-end"><button type="button" class="btn btn-primary">Todos presentes</button></td></span>
+                <div class="table-height">
+                    <table id="tabelaConvidados" class="table table-hover text-center">
+                        <thead class="thead-color">
+                            <tr>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Telefone</th>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Presente</th>
+                            </tr>
+                        </thead>
+                        <tbody class="col-12">
+                            
+                        </tbody>
+                    </table>
+                </div>
+                <div class="py-3 div-dados flex-column p-0 m-0 w-100">
+                    <div class="d-flex align-items-center justify-content-start">
+                        <span class="col-3 p-0 m-0">Total de convidados: <span id="totalConvidados"></span></span>
+                        <span class="col-4 p-0 m-0">Total de convites enviados: <span id="totalConvitesEnviados">0</span></span>
+                    </div><br>
+                    <div class="d-flex align-items-center">
+                        <span class="col-1 p-0 m-0">Convite:</span>
+                        <span class="col-3 p-0 m-0"><button type="button" class="py-1 btn btn-primary">Visualizar template</button></span>
+                        <span class="col-2 p-0 m-0 d-flex justify-content-end"><button type="button" class="py-1 btn btn-primary">Enviar convites</button></span>
+                    </div>
                 </div>
             </div>
             <div class="col-10 div-convidado d-none shadow px-3 my-5 bg-white rounded">
                 <div class="p-5">
-                    <form class="row g-3 d-flex justify-content-between flex-wrap">
+                    <form class="row g-3 d-flex justify-content-between  align-items-end flex-wrap">
                         <div class="p-0 m-0 col-6 py-3 pr-5">
                             <label for="nomeConvidado" class="visually-hidden">Nome do convidado</label>
                             <input type="text" class="form-control" id="nomeConvidado" placeholder="Reginaldo Pereira">
                         </div>
                         <div class="p-0 m-0 col-5 py-3">
+                            <label for="emailConvidado" class="visually-hidden">Email</label>
+                            <input type="email" class="form-control" id="emailConvidado" placeholder="Email">
+                        </div>
+                        <div class="p-0 m-0 col-4 py-3">
                             <label for="telefoneConvidado" class="visually-hidden">Telefone</label>
                             <input type="text" class="form-control" id="telefoneConvidado" placeholder="Telefone">
                         </div>
-                        <div class="p-0 m-0 col-8 py-3 pr-5">
+                        <div class="p-0 m-0 col-3 py-3 pr-2">
                             <select class="p-0 m-0 form-select form-control" id="tipo" aria-label="Default select example">
-                                <option selected>Tipo</option>
-                                <option value="1">Vip</option>
-                                <option value="2">Pista</option>
+
                             </select>
                         </div>
-                        <div class="p-0 m-0 col-2 py-4 pr-2">
+                        <div class="p-0 m-0 col-2 py-3 pr-2">
                             <label for="presente" class="visually-hidden">Presente</label>
                             <input class="" type="checkbox" id="presente"/>
                         </div>
-                        <div class="p-0 m-0 col-2 py-3 pr-2">
-                            <button type="button" class="btn btn-primary mb-3">Registrar</button>
+                        <div class="p-0 m-0 col-2 py-0 pr-2">
+                            <button type="button" class="btn btn-primary mb-3" id="registrarConvidado">Registrar</button>
                         </div>
                     </form>
                 </div>
@@ -107,7 +117,7 @@
                             <input type="text" class="form-control" id="tipoConvidado" placeholder="Vip">
                         </div>
                         <div class="p-0 m-0 col-4 pt-5">
-                            <button type="button" class="btn btn-primary mb-3">Registrar</button>
+                            <button id="registrarTipoConvidado" type="button" class="btn btn-primary mb-3">Registrar</button>
                         </div>
                     </form>
                 </div>
