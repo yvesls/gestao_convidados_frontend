@@ -186,15 +186,15 @@ const criaTbodyConvidados = (list) => {
     }
     $("#tabelaConvidados").addClass("table-hover");
     for(x in list) {
-        let isChecked;
-        list[x].present === true ? isChecked = 'checked' : isChecked = '';
+        let confirmouPresenca;
+        list[x].present === true ? confirmouPresenca = 'sim' : confirmouPresenca = 'não';
         $("table > tbody").append(`
             <tr>
                 <th>${list[x].guestName}</th>
                 <td>${list[x].guestEmail}</td>
                 <td>${list[x].guestTel}</td>
                 <td>${list[x].typeGuest.typeDescription}</td>
-                <td><input class="" type="checkbox" ${isChecked}/></td>
+                <td>${confirmouPresenca}</td>
             </tr>
         `)
     }
