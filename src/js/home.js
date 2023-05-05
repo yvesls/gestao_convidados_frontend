@@ -1,5 +1,7 @@
 /* Funções de exibição de containers */
 $("#exibirDivAddConvidado").click(function (){
+    $("#navbarDropdown").removeClass("active").addClass("active");
+    $("#exibirDivConvidados").removeClass("active");
     $(".div-tipo").removeClass().animate({
         height: '0.0'},
         "slow"
@@ -15,6 +17,8 @@ $("#exibirDivAddConvidado").click(function (){
 });
 
 $("#exibirDivAddTipo").click(function (){
+    $("#navbarDropdown").removeClass("active").addClass("active");
+    $("#exibirDivConvidados").removeClass("active");
     $(".div-convidado").removeClass().animate({
         height: '0.0'},
         "slow"
@@ -30,6 +34,8 @@ $("#exibirDivAddTipo").click(function (){
 });
 
 $("#exibirDivConvidados").click(function (){
+    $("#exibirDivConvidados").removeClass("active").addClass("active");
+    $("#navbarDropdown").removeClass("active");
     $(".div-convidado").removeClass().animate({
         height: '0.0'},
         "slow"

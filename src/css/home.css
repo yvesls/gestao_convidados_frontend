@@ -65,7 +65,7 @@ input[type='checkbox'] {
 .div-table {
     display: block;
     height: 36rem;
-    overflow-y: scroll;
+    min-height: 36rem;
 }
 
 .div-convidado, .div-tipo {
@@ -92,14 +92,20 @@ input[type='checkbox'] {
     z-index: 4;
 }
 
+.table-height {
+    overflow-y: scroll;
+    min-height: 24.45rem;
+}
+
+#tabelaConvidados > .thead-color > tr {
+    background-color: #3F1010;
+    position: relative;
+    top: -4.45rem;
+}
+
 tbody {
     z-index: 1;
     margin-top: 70px;
-}
-
-.table-height {
-    min-height: 22rem;
-    max-height: 22rem;
 }
 
 .dropdown-menu {
