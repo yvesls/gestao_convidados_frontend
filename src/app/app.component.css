@@ -1,0 +1,48 @@
+main {
+    box-sizing: border-box;
+    background: url(/assets/imagens/background-completo.png);
+    background-size: cover;
+    min-height: 100vh;
+    background-color: silver;
+}
+
+::ng-deep .bg-fundo {
+    background-color: #3F1010;
+}
+
+::ng-deep .bg-secundario {
+    background-color: #a52a2a;
+}
+
+::ng-deep .bg-secundario li:hover {
+    background-color: #611c1c;
+}
+
+::ng-deep .buttonPadraoViho.buttonPadraoViho {
+    background-color: #611c1c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+  
+::ng-deep .buttonPadraoViho:hover {
+    background-color: #a52a2a;
+}
+  
+::ng-deep .buttonPadraoViho:active {
+    background-color: #4e1212;
+    box-shadow: none;
+}
+
+::ng-deep .buttonPadraoViho:focus {
+    border: none;
+    outline: none;
+}

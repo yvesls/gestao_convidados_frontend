@@ -1,0 +1,63 @@
+<div class="menu-container d-flex flex-column align-items-center pt-5" [ngClass]="{'collapsed': isCollapsed}">
+    <span class="toggle-btn text-center" [ngClass]="{'fechado': isCollapsed}" (click)="toggleCollapse()">
+        ☰
+    </span>
+    <nav class="col-12 d-flex align-items-center flex-column mt-5 p-0 m-0">
+        <div class="mb-3 ml-4 icon-menu" [ngClass]="{'icon-menu-isCollapsed': isCollapsed}">
+            <div (click)="navigateTo('home')">
+                <img width="100px" src="./../../../assets/icon-sem-fundo.png" alt="">
+            </div>
+        </div>
+        <ul class=" p-0 m-0 col-12 text-center text-white">
+            <li class="py-3 active">
+
+                <ng-container *ngIf="!isCollapsed; else elseConvidados">
+                    <span>
+                        Convidados
+                    </span>
+                </ng-container>
+
+                <ng-template #elseConvidados>
+                    <span data-toggle="popover" title="Convidados">
+                        <i class="dropdown-item fa-solid fa-users"></i>
+                    </span>
+                </ng-template>
+
+            </li>
+            <li class="py-3 dropdown-toggle" id="navbarDropdown" role="button" (click)="toggleDropdown()" [class.show]="dropdownOpen">
+
+                <ng-container *ngIf="!isCollapsed; else elseAdd">
+                    Editar
+                </ng-container>
+
+                <ng-template #elseAdd>
+                    <span data-toggle="popover" title="Adicionar/Editar">
+                        <i class="fa-solid fa-user-pen"></i>
+                    </span>
+                </ng-template>
+
+                <div *ngIf="dropdownOpen">
+
+                    <ng-container *ngIf="!isCollapsed; else elseConvidado">
+                        <span class="dropdown-item px-4" (click)="navigateTo('cadastroConvidados')">Convidado</span>
+                    </ng-container>
+                    <ng-template #elseConvidado>
+                        <span data-toggle="popover" (click)="navigateTo('cadastroConvidados')" title="Convidado">
+                            <i class="dropdown-item fa-solid fa-user-plus"></i>
+                        </span>
+                    </ng-template>
+
+                    <ng-container *ngIf="!isCollapsed; else elseTipo">
+                        <span class="dropdown-item px-4" (click)="navigateTo('cadastroTipoConvidados')">Tipo de convidado</span>
+                    </ng-container>
+                    <ng-template #elseTipo>
+                        <span data-toggle="popover" (click)="navigateTo('cadastroTipoConvidados')" title="Tipo Convidado">
+                            <i class="dropdown-item fa-solid fa-star"></i>
+                        </span>
+                    </ng-template>
+
+                </div>
+            </li>
+        </ul>
+    </nav>
+</div>

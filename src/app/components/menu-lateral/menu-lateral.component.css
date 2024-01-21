@@ -1,0 +1,77 @@
+.menu-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 14.5%;
+    background-color: #611c1c;
+    transition: width 0.3s ease;
+}
+
+.menu-container ul {
+    list-style: none;
+}
+
+.menu-container.collapsed {
+    width: 3%;
+}
+
+.toggle-btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    color: white;
+    cursor: pointer;
+    font-size: 2rem;
+    outline: none;
+    margin: auto;
+    width: 50px;
+    transition: transform 0.3s ease;
+}
+
+.icon-menu-isCollapsed img {
+    width: 50px;
+    margin-left: -23px;
+    transform: rotateY(360deg);
+}
+
+.icon-menu img {
+    transition: transform 0.5s ease; 
+}
+
+.toggle-btn.fechado {
+    transform: scaleX(-1);
+}
+
+.dropdownOpen {
+    background-color: #a52a2a;
+}
+
+ul li {
+    list-style: none;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+ul li:not(.active):hover {
+    background-color: #4e1212;
+}
+
+.dropdown-item:hover {
+    background-color: #a52a2a;
+}
+
+.dropdown-item {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    color: #fff;
+}
+
+.active {
+    font-weight: bold;
+    background-color: #a52a2a;
+    color: #fff;
+}
