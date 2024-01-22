@@ -64,7 +64,7 @@ export class CustomActionConfiguration implements ActionConfiguration {
   deleteAction(id: number): void {
     this.toggleModal();
   }
-  
+   
   private toggleModal(): void {
     if (this.openModalOnClick) {
       this.modalService.openModal();
@@ -87,7 +87,7 @@ class TipoConvidadoGrid {
   ];
 
   gridData = [
-    { id: 1, tipoConvidado: 'VIP', acao: this.generateActionIcons(1) },
+    { id: 1, tipoConvidado: 'VIP', acao: this.generateActionIcons(1)},
     { id: 2, tipoConvidado: 'PISTA', acao: this.generateActionIcons(2)},
     { id: 3, tipoConvidado: 'CAMAROTE', acao: this.generateActionIcons(3)}
   ];

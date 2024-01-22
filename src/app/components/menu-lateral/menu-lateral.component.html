@@ -9,7 +9,7 @@
             </div>
         </div>
         <ul class=" p-0 m-0 col-12 text-center text-white">
-            <li class="py-3 active" (click)="navigateTo('listaConvidados')">
+            <li class="py-3" [ngClass]="{'active': isMenuItemActive('listaConvidados')}"  (click)="navigateTo('listaConvidados')">
 
                 <ng-container *ngIf="!isCollapsed; else elseConvidados">
                     <span>
@@ -18,7 +18,7 @@
                 </ng-container>
 
                 <ng-template #elseConvidados>
-                    <span data-toggle="popover" title="Convidados" (click)="navigateTo('listaConvidados')">
+                    <span data-toggle="popover" title="Convidados" [ngClass]="{'active': isMenuItemActive('listaConvidados')}" (click)="navigateTo('listaConvidados')">
                         <i class="dropdown-item fa-solid fa-users"></i>
                     </span>
                 </ng-template>
@@ -39,19 +39,19 @@
                 <div *ngIf="dropdownOpen">
 
                     <ng-container *ngIf="!isCollapsed; else elseConvidado">
-                        <span class="dropdown-item px-4" (click)="navigateTo('cadastroConvidados')">Convidado</span>
+                        <span class="dropdown-item px-4" [ngClass]="{'active': isMenuItemActive('cadastroConvidados')}" (click)="navigateTo('cadastroConvidados')">Convidado</span>
                     </ng-container>
                     <ng-template #elseConvidado>
-                        <span data-toggle="popover" (click)="navigateTo('cadastroConvidados')" title="Convidado">
+                        <span data-toggle="popover" [ngClass]="{'active': isMenuItemActive('cadastroConvidados')}" (click)="navigateTo('cadastroConvidados')" title="Convidado">
                             <i class="dropdown-item fa-solid fa-user-plus"></i>
                         </span>
                     </ng-template>
 
                     <ng-container *ngIf="!isCollapsed; else elseTipo">
-                        <span class="dropdown-item px-4" (click)="navigateTo('cadastroTipoConvidados')">Tipo de convidado</span>
+                        <span class="dropdown-item px-4" [ngClass]="{'active': isMenuItemActive('cadastroTipoConvidados')}" (click)="navigateTo('cadastroTipoConvidados')">Tipo de convidado</span>
                     </ng-container>
                     <ng-template #elseTipo>
-                        <span data-toggle="popover" (click)="navigateTo('cadastroTipoConvidados')" title="Tipo Convidado">
+                        <span data-toggle="popover" [ngClass]="{'active': isMenuItemActive('cadastroTipoConvidados')}" (click)="navigateTo('cadastroTipoConvidados')" title="Tipo Convidado">
                             <i class="dropdown-item fa-solid fa-star"></i>
                         </span>
                     </ng-template>
