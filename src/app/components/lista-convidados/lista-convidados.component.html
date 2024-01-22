@@ -1,1 +1,7 @@
-<p>lista-convidados works!</p>
+<div class="float-right div-lista-convidados shadow px-3 bg-white rounded" [ngClass]="{'collapsed': isCollapsed}">
+    <div class="p-5">
+        <div class="p-0 m-0 col-12 mt-3 py-3">
+            <app-grid [columns]="convidadoGrid.gridColumns" [data]="convidadoGrid.gridData"></app-grid>
+        </div>
+    </div>
+</div>

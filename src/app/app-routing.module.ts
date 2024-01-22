@@ -4,6 +4,7 @@ import { HomeComponent } from "./components/home/home.component";
 import { CadastroConvidadosComponent } from "./components/cadastro-convidados/cadastro-convidados.component";
 import { LoginComponent } from "./components/login/login.component";
 import { CadastroTipoConvidadosComponent } from "./components/cadastro-tipo-convidados/cadastro-tipo-convidados.component";
+import { ListaConvidadosComponent } from "./components/lista-convidados/lista-convidados.component";
 
 const routes: Routes = [
     { 
@@ -22,6 +23,10 @@ const routes: Routes = [
                 path: 'cadastroTipoConvidados',
                 component: CadastroTipoConvidadosComponent
             },
+            {
+                path: 'listaConvidados',
+                component: ListaConvidadosComponent
+            },
         ] 
     },
     { 
@@ -31,6 +36,10 @@ const routes: Routes = [
     { 
         path: 'cadastroTipoConvidados', 
         component: CadastroTipoConvidadosComponent 
+    },
+    {
+        path: 'listaConvidados',
+        component: ListaConvidadosComponent
     },
 ];
 

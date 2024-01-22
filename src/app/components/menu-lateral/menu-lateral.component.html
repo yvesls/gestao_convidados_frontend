@@ -9,7 +9,7 @@
             </div>
         </div>
         <ul class=" p-0 m-0 col-12 text-center text-white">
-            <li class="py-3 active">
+            <li class="py-3 active" (click)="navigateTo('listaConvidados')">
 
                 <ng-container *ngIf="!isCollapsed; else elseConvidados">
                     <span>
@@ -18,7 +18,7 @@
                 </ng-container>
 
                 <ng-template #elseConvidados>
-                    <span data-toggle="popover" title="Convidados">
+                    <span data-toggle="popover" title="Convidados" (click)="navigateTo('listaConvidados')">
                         <i class="dropdown-item fa-solid fa-users"></i>
                     </span>
                 </ng-template>
