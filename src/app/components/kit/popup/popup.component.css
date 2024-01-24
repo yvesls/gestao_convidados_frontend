@@ -1,0 +1,50 @@
+/* popup.component.css */
+.popup-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+  
+.popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.3s ease-out;
+}
+  
+.popup-content.success {
+    border: 2px solid #4CAF50;
+}
+  
+.popup-content.warning {
+    border: 2px solid #FFC107;
+}
+  
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+  
+button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+  
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+}
+  

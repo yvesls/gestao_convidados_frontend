@@ -1,0 +1,12 @@
+<!-- popup.component.html -->
+<div class="popup-container" *ngIf="popupContent">
+    <div class="popup-content" [ngClass]="{'success': popupContent.type === 'success', 'warning': popupContent.type === 'warning'}">
+      <h3>{{ popupContent.title }}</h3>
+      <p>{{ popupContent.message }}</p>
+      <div class="button-container">
+        <button *ngIf="popupContent.confirmText" (click)="confirm()">{{ popupContent.confirmText || 'OK' }}</button>
+        <button *ngIf="popupContent.cancelText" (click)="cancel()">{{ popupContent.cancelText }}</button>
+      </div>
+    </div>
+</div>
+  

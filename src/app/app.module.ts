@@ -16,9 +16,10 @@ import { LoginComponent } from './components/login/login.component';
 import { GridComponent } from './components/kit/grid/grid.component';
 import { ModalConfigComponent } from './components/kit/modal-config/modal-config.component';
 import { ModalService } from "./services/modal.service";
+import { PopupComponent } from './components/kit/popup/popup.component';
 
 @NgModule({
-    declarations: [AppComponent, MenuLateralComponent, HomeComponent, ListaConvidadosComponent, CadastroConvidadosComponent, CadastroTipoConvidadosComponent, BreadcrumbComponent, LoginComponent, GridComponent, ModalConfigComponent],
+    declarations: [AppComponent, MenuLateralComponent, HomeComponent, ListaConvidadosComponent, CadastroConvidadosComponent, CadastroTipoConvidadosComponent, BreadcrumbComponent, LoginComponent, GridComponent, ModalConfigComponent, PopupComponent],
     imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, ReactiveFormsModule, CommonModule],
     providers: [ModalService],
     bootstrap: [AppComponent],

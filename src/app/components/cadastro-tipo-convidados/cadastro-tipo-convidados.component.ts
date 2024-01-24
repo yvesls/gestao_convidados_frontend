@@ -5,6 +5,11 @@ import { DefaultIconConfiguration } from '../kit/abstracts/default-icon-configur
 import { ActionConfiguration } from '../kit/interfaces/action-configuration';
 import { IconConfiguration } from '../kit/interfaces/icon-configuration';
 import { ModalService } from 'src/app/services/modal.service';
+import { PopupService } from 'src/app/services/popup.service';
+import { DeletePopupConfig } from '../kit/model-config/delete-popup-config.class';
+import { SuccessPopupConfig } from '../kit/model-config/success-popup-config.class';
+import { PopupConfiguration } from '../kit/interfaces/popup-configuration';
+import { distinctUntilChanged, take } from 'rxjs';
 
 @Component({
   selector: 'app-cadastro-tipo-convidados',
@@ -19,7 +24,7 @@ export class CadastroTipoConvidadosComponent implements OnInit {
 
   tipoConvidadoGrid!: TipoConvidadoGrid;
 
-  constructor(private formBuilder: FormBuilder, private menuStateService: MenuStateService, private modalService: ModalService) {
+  constructor(private formBuilder: FormBuilder, private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService) {
   }
 
   ngOnInit(): void {
@@ -33,7 +38,7 @@ export class CadastroTipoConvidadosComponent implements OnInit {
 
     this.tipoConvidadoGrid = new TipoConvidadoGrid(
       new CustomIconConfiguration(),
-      new CustomActionConfiguration(this.modalService)
+      new CustomActionConfiguration(this.modalService, this.popupService)
     );
     
   }
@@ -52,7 +57,7 @@ export class CustomIconConfiguration extends DefaultIconConfiguration {
 
 export class CustomActionConfiguration implements ActionConfiguration {
   
-  constructor(private modalService: ModalService) {
+  constructor(private modalService: ModalService, private popupService: PopupService) {
   }
 
   openModalOnClick = true;
@@ -62,7 +67,18 @@ export class CustomActionConfiguration implements ActionConfiguration {
   }
 
   deleteAction(id: number): void {
-    this.toggleModal();
+    const popupConfig: PopupConfiguration = new DeletePopupConfig();
+
+    this.popupService.openPopup(popupConfig);
+    this.popupService.onConfirm()
+      .pipe(take(1), distinctUntilChanged())
+      .subscribe(() => {
+        this.excluir();
+      });
+  }
+  
+  private excluir(): void {
+    this.popupService.openPopup(new SuccessPopupConfig());
   }
    
   private toggleModal(): void {
