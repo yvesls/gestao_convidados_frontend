@@ -8,6 +8,7 @@ import { PopupConfiguration } from '../kit/interfaces/popup-configuration';
 import { DeletePopupConfig } from '../kit/model-config/delete-popup-config.class';
 import { SuccessPopupConfig } from '../kit/model-config/success-popup-config.class';
 import { PopupService } from 'src/app/services/popup.service';
+import { distinctUntilChanged, take } from 'rxjs';
 
 @Component({
   selector: 'app-lista-convidados',
@@ -50,14 +51,13 @@ export class CustomActionConfiguration implements ActionConfiguration {
 
   deleteAction(id: number): void {
     const popupConfig: PopupConfiguration = new DeletePopupConfig();
-  
-    popupConfig.actionCallback = (result) => {
-      if (result) {
-        this.excluir();
-      }
-    };
-  
+
     this.popupService.openPopup(popupConfig);
+    this.popupService.onConfirm()
+      .pipe(take(1), distinctUntilChanged())
+      .subscribe(() => {
+        this.excluir();
+      });
   }
   
   private excluir(): void {
