@@ -1,11 +1,12 @@
 <!-- popup.component.html -->
 <div class="popup-container" *ngIf="popupContent">
-    <div class="popup-content" [ngClass]="{'success': popupContent.type === 'success', 'warning': popupContent.type === 'warning'}">
+    <div class="popup-content">
       <h3>{{ popupContent.title }}</h3>
-      <p>{{ popupContent.message }}</p>
-      <div class="button-container">
-        <button *ngIf="popupContent.confirmText" (click)="confirm()">{{ popupContent.confirmText || 'OK' }}</button>
-        <button *ngIf="popupContent.cancelText" (click)="cancel()">{{ popupContent.cancelText }}</button>
+      <p class="m-3">{{ popupContent.message }}</p>
+      <i [ngClass]="{'success fa-regular fa-thumbs-up fa-2xl my-4': popupContent.type === 'success', 'warning fa-solid fa-triangle-exclamation fa-4x': popupContent.type === 'warning'}"></i>
+      <div class="mt-4 button-container">
+        <button class="buttonPadrao buttonConfirm" *ngIf="popupContent.confirmText" (click)="confirm()">{{ popupContent.confirmText || 'OK' }}</button>
+        <button class="buttonPadrao buttonReturn" *ngIf="popupContent.cancelText" (click)="cancel()">{{ popupContent.cancelText }}</button>
       </div>
     </div>
 </div>
