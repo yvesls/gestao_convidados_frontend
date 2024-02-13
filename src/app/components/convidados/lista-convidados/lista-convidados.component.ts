@@ -1,14 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuStateService } from 'src/app/services/menu-state.service';
-import { ActionConfiguration } from '../kit/interfaces/action-configuration';
-import { IconConfiguration } from '../kit/interfaces/icon-configuration';
+import { ActionConfiguration } from '../../kit/interfaces/action-configuration';
+import { IconConfiguration } from '../../kit/interfaces/icon-configuration';
 import { ModalService } from 'src/app/services/modal.service';
-import { DefaultIconConfiguration } from '../kit/abstracts/default-icon-configuration.class';
-import { PopupConfiguration } from '../kit/interfaces/popup-configuration';
-import { DeletePopupConfig } from '../kit/model-config/delete-popup-config.class';
-import { SuccessPopupConfig } from '../kit/model-config/success-popup-config.class';
+import { DefaultIconConfiguration } from '../../kit/abstracts/default-icon-configuration.class';
+import { PopupConfiguration } from '../../kit/interfaces/popup-configuration';
+import { DeletePopupConfig } from '../../kit/model-config/delete-popup-config.class';
+import { SuccessPopupConfig } from '../../kit/model-config/success-popup-config.class';
 import { PopupService } from 'src/app/services/popup.service';
 import { distinctUntilChanged, take } from 'rxjs';
+import { EditarConvidadosComponent } from '../editar-convidados/editar-convidados.component';
 
 @Component({
   selector: 'app-lista-convidados',
@@ -66,7 +67,7 @@ export class CustomActionConfiguration implements ActionConfiguration {
    
   private toggleModal(): void {
     if (this.openModalOnClick) {
-      this.modalService.openModal();
+      this.modalService.openModal(EditarConvidadosComponent);
     } else {
       this.modalService.closeModal();
     }

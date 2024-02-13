@@ -27,7 +27,7 @@
             <li class="py-3 dropdown-toggle" id="navbarDropdown" role="button" (click)="toggleDropdown()" [class.show]="dropdownOpen">
 
                 <ng-container *ngIf="!isCollapsed; else elseAdd">
-                    Editar
+                    Adicionar
                 </ng-container>
 
                 <ng-template #elseAdd>
@@ -48,10 +48,10 @@
                     </ng-template>
 
                     <ng-container *ngIf="!isCollapsed; else elseTipo">
-                        <span class="dropdown-item px-4" [ngClass]="{'active': isMenuItemActive('cadastroTipoConvidados')}" (click)="navigateTo('cadastroTipoConvidados')">Tipo de convidado</span>
+                        <span class="dropdown-item px-4" [ngClass]="{'active': isMenuItemActive('cadastroTipoConvidado')}" (click)="navigateTo('cadastroTipoConvidado')">Tipo de convidado</span>
                     </ng-container>
                     <ng-template #elseTipo>
-                        <span data-toggle="popover" [ngClass]="{'active': isMenuItemActive('cadastroTipoConvidados')}" (click)="navigateTo('cadastroTipoConvidados')" title="Tipo Convidado">
+                        <span data-toggle="popover" [ngClass]="{'active': isMenuItemActive('cadastroTipoConvidado')}" (click)="navigateTo('cadastroTipoConvidado')" title="Tipo Convidado">
                             <i class="dropdown-item fa-solid fa-star"></i>
                         </span>
                     </ng-template>

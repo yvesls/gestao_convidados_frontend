@@ -1,22 +1,23 @@
-import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuStateService } from 'src/app/services/menu-state.service';
-import { DefaultIconConfiguration } from '../kit/abstracts/default-icon-configuration.class';
-import { ActionConfiguration } from '../kit/interfaces/action-configuration';
-import { IconConfiguration } from '../kit/interfaces/icon-configuration';
+import { DefaultIconConfiguration } from '../../kit/abstracts/default-icon-configuration.class';
+import { ActionConfiguration } from '../../kit/interfaces/action-configuration';
+import { IconConfiguration } from '../../kit/interfaces/icon-configuration';
 import { ModalService } from 'src/app/services/modal.service';
 import { PopupService } from 'src/app/services/popup.service';
-import { DeletePopupConfig } from '../kit/model-config/delete-popup-config.class';
-import { SuccessPopupConfig } from '../kit/model-config/success-popup-config.class';
-import { PopupConfiguration } from '../kit/interfaces/popup-configuration';
+import { DeletePopupConfig } from '../../kit/model-config/delete-popup-config.class';
+import { SuccessPopupConfig } from '../../kit/model-config/success-popup-config.class';
+import { PopupConfiguration } from '../../kit/interfaces/popup-configuration';
 import { distinctUntilChanged, take } from 'rxjs';
+import { EditarTipoConvidadoComponent } from '../editar-tipo-convidado/editar-tipo-convidado.component';
 
 @Component({
-  selector: 'app-cadastro-tipo-convidados',
-  templateUrl: './cadastro-tipo-convidados.component.html',
-  styleUrls: ['./cadastro-tipo-convidados.component.css']
+  selector: 'app-cadastro-tipo-convidado',
+  templateUrl: './cadastro-tipo-convidado.component.html',
+  styleUrls: ['./cadastro-tipo-convidado.component.css']
 })
-export class CadastroTipoConvidadosComponent implements OnInit {
+export class CadastroTipoConvidadoComponent implements OnInit {
   @ViewChild('actionContentSpan') actionContentSpan!: ElementRef;
 
   cadastroForm!: FormGroup;
@@ -83,7 +84,7 @@ export class CustomActionConfiguration implements ActionConfiguration {
    
   private toggleModal(): void {
     if (this.openModalOnClick) {
-      this.modalService.openModal();
+      this.modalService.openModal(EditarTipoConvidadoComponent);
     } else {
       this.modalService.closeModal();
     }
@@ -95,7 +96,7 @@ class TipoConvidadoGrid {
     private iconConfig: IconConfiguration,
     private actionConfig: ActionConfiguration
   ) {}
-
+    
   gridColumns = [
     { header: 'ID', field: 'id' },
     { header: 'Tipo de Convidado', field: 'tipoConvidado' },

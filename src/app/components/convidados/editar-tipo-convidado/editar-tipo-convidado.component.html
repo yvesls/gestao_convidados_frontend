@@ -1,0 +1,15 @@
+<div class="px-3">
+    <div class="p-5">
+        <form [formGroup]="editarForm">
+            <div class="row g-3 d-flex justify-content-center align-items-end">
+                <div class="p-0 m-0 col-4 py-3 mr-3">
+                    <label for="tipoConvidado" class="visually-hidden">Tipo de Convidado</label>
+                    <input type="text" class="form-control" id="tipoConvidado" formControlName="tipoConvidado" placeholder="Vip">
+                </div>
+                <div class="p-0 m-0 col-1 mt-3 py-3">
+                    <button type="submit" class="buttonPadrao buttonViho" (click)="onSubmit()">Salvar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

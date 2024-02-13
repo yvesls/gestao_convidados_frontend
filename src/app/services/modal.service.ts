@@ -1,6 +1,6 @@
 import { ModalConfiguration } from './../components/kit/interfaces/modal-configuration';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +11,8 @@ export class ModalService {
 
   constructor() {}
 
-  openModal(): void {
-    this.modalConfigSource.next({ isOpen: true, opacity: 1 });
+  openModal(component: any): void {
+    this.modalConfigSource.next({ isOpen: true, opacity: 1, component: component });
   }
 
   closeModal(): void {
