@@ -10,6 +10,7 @@ import { SuccessPopupConfig } from '../../kit/model-config/success-popup-config.
 import { PopupService } from 'src/app/services/popup.service';
 import { distinctUntilChanged, take } from 'rxjs';
 import { EditarConvidadosComponent } from '../editar-convidados/editar-convidados.component';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-lista-convidados',
@@ -19,10 +20,17 @@ import { EditarConvidadosComponent } from '../editar-convidados/editar-convidado
 export class ListaConvidadosComponent implements OnInit {
   isCollapsed: boolean = false;
   convidadoGrid!: ConvidadoGrid;
+  filtroForm!: FormGroup;
 
-  constructor(private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService) { }
+  constructor(private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.filtroForm = this.formBuilder.group({
+      nomeConvidado: [''],
+      tipoConvidado: [''],
+      presente: ['']
+    });
+
     this.menuStateService.isCollapsed$.subscribe((isCollapsed) => {
       this.isCollapsed = isCollapsed;
     });
@@ -31,6 +39,10 @@ export class ListaConvidadosComponent implements OnInit {
       new CustomIconConfiguration(),
       new CustomActionConfiguration(this.modalService, this.popupService)
     );
+  }
+
+  onSubmit() {
+    console.log(this.filtroForm.value);
   }
 }
 

@@ -48,10 +48,33 @@ main {
 }
 
 ::ng-deep .buttonVinho:hover {
-    background-color: #a52a2a;
+    background-color: #9b3030;
 }
   
 ::ng-deep .buttonVinho:active {
     background-color: #4e1212;
 }
 
+::ng-deep .buttonAzul {
+    background-color: #19629e;
+}
+
+::ng-deep .buttonAzul:hover {
+    background-color: #2077be;
+}
+  
+::ng-deep .buttonAzul:active {
+    background-color: #1f81d1;
+}
+
+::ng-deep .buttonVerde {
+    background-color: #0d741e;
+}
+
+::ng-deep .buttonVerde:hover {
+    background-color: #13a32b;
+}
+  
+::ng-deep .buttonVerde:active {
+    background-color: #1cce39;
+}

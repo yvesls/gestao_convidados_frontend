@@ -1,5 +1,32 @@
 <div class="float-right div-lista-convidados shadow px-3 bg-white rounded" [ngClass]="{'collapsed': isCollapsed}">
     <div class="p-5">
+        <form [formGroup]="filtroForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3 d-flex flex-wrap justify-content-between align-items-center">
+                <div class="col-4">
+                    <label for="nomeConvidado" class="form-label">Nome do Convidado:</label>
+                    <input type="text" class="form-control" formControlName="nomeConvidado" id="nomeConvidado" placeholder="Digite o nome do convidado">
+                </div>
+                <div class="col-3">
+                    <label for="tipoConvidado" class="form-label">Tipo de Convidado:</label>
+                    <select class="form-select form-control" formControlName="tipoConvidado" id="tipoConvidado">
+                    <option value="">Selecione</option>
+                    <option value="tipo1">Vip</option>
+                    <option value="tipo2">Padrão</option>
+                    </select>
+                </div>
+                <div class="col-3">
+                    <label for="presente" class="form-label">Presente:</label>
+                    <select class="form-select form-control" formControlName="presente" id="presente">
+                    <option value="">Selecione</option>
+                    <option value="sim">Sim</option>
+                    <option value="nao">Não</option>
+                    </select>
+                </div>
+            </div>
+            <div class="ml-3">
+                <button type="submit" class="buttonPadrao buttonAzul">Filtrar</button>
+            </div>
+        </form>          
         <div class="p-0 m-0 col-12 mt-3 py-3">
             <app-grid [columns]="convidadoGrid.gridColumns" [data]="convidadoGrid.gridData"></app-grid>
         </div>
