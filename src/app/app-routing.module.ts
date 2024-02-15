@@ -41,6 +41,10 @@ const routes: Routes = [
         path: 'listaConvidados',
         component: ListaConvidadosComponent
     },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
 ];
 
 @NgModule({

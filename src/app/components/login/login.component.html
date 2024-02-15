@@ -1,1 +1,21 @@
-<p>login works!</p>
+<div class="box">
+    <div class="content justify-content-center col-4">
+        <div class="w-100 d-flex justify-content-center">
+            <img width="300px" src="./../../../assets/logo-sem-fundo.png" alt="">
+        </div>
+        <form (submit)="fazerLogin()">
+            <div class="mb-3">
+                <label for="username" class="form-label">Nome de Usuário:</label>
+                <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Senha:</label>
+                <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password">
+            </div>
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-lg buttonLogin">Entrar</button>
+                <button type="button" class="btn btn-link linkRegistrar">Registrar-se</button>
+            </div>
+        </form>
+    </div>
+</div>
