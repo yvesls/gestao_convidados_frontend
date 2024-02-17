@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
     this.loginStore.logar(this.user).subscribe({
       next: (response: any) => {
         console.log(response)
-        const authToken = response.token;
+        const authToken = response.headers.get('Authorization');
         this.authService.setAuthToken(authToken);
         this.router.navigate(['/home']);
       },

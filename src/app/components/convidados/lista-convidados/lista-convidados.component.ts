@@ -11,6 +11,8 @@ import { PopupService } from 'src/app/services/popup.service';
 import { distinctUntilChanged, take } from 'rxjs';
 import { EditarConvidadosComponent } from '../editar-convidados/editar-convidados.component';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { GuestFilter } from '../../kit/model-config/guest-filter.class';
+import { ConvidadosStore } from '../convidados.store';
 
 @Component({
   selector: 'app-lista-convidados',
@@ -22,7 +24,7 @@ export class ListaConvidadosComponent implements OnInit {
   convidadoGrid!: ConvidadoGrid;
   filtroForm!: FormGroup;
 
-  constructor(private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private formBuilder: FormBuilder) { }
+  constructor(private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private formBuilder: FormBuilder, private convidadoStore: ConvidadosStore) { }
 
   ngOnInit(): void {
     this.filtroForm = this.formBuilder.group({
@@ -39,9 +41,30 @@ export class ListaConvidadosComponent implements OnInit {
       new CustomIconConfiguration(),
       new CustomActionConfiguration(this.modalService, this.popupService)
     );
+
+    this.convidadoStore.findAllByUser().subscribe((guests) => {
+      const data = guests.map((guest) => {
+        return {
+          id: guest.guestId,
+          nome: guest.guestName,
+          email: guest.guestEmail,
+          telefone: guest.guestTel,
+          tipoConvidado: guest.typeGuest.typeDescription,
+          presente: guest.present ? 'Sim' : 'Não',
+          acao: this.convidadoGrid.generateActionIcons(guest.guestId),
+        };
+      });
+
+      this.convidadoGrid.setGridData(data);
+    });
   }
 
   onSubmit() {
+    const guestFilter: GuestFilter = {
+      nomeConvidado: this.filtroForm.get('nomeConvidado')?.value,
+      tipoConvidado: this.filtroForm.get('tipoConvidado')?.value,
+      presente: this.filtroForm.get('presente')?.value
+    };
     console.log(this.filtroForm.value);
   }
 }
@@ -102,53 +125,11 @@ class ConvidadoGrid {
     { header: 'Ações', field: 'acao' },
   ];
 
-  gridData = [
-    {
-      id: 1,
-      nome: 'Reginaldo Pereira',
-      email: 'reginaldo@example.com',
-      telefone: '123-456-7890',
-      tipoConvidado: 'VIP',
-      presente: 'Sim',
-      acao: this.generateActionIcons(1),
-    },
-    {
-      id: 2,
-      nome: 'Ana Silva',
-      email: 'ana@example.com',
-      telefone: '987-654-3210',
-      tipoConvidado: 'VIP',
-      presente: 'Sim',
-      acao: this.generateActionIcons(2),
-    },
-    {
-      id: 3,
-      nome: 'Carlos Oliveira',
-      email: 'carlos@example.com',
-      telefone: '555-123-4567',
-      tipoConvidado: 'Normal',
-      presente: 'Sim',
-      acao: this.generateActionIcons(3),
-    },
-    {
-      id: 4,
-      nome: 'Juliana Santos',
-      email: 'juliana@example.com',
-      telefone: '999-888-7777',
-      tipoConvidado: 'VIP',
-      presente: 'Sim',
-      acao: this.generateActionIcons(4),
-    },
-    {
-      id: 5,
-      nome: 'Rafael Lima',
-      email: 'rafael@example.com',
-      telefone: '111-222-3333',
-      tipoConvidado: 'Normal',
-      presente: 'Sim',
-      acao: this.generateActionIcons(5),
-    }
-  ];
+  gridData = [];
+
+  setGridData(data: any) {
+    this.gridData = data;
+  }
 
   generateActionIcons(id: number): Icon[] {
     if (this.actionConfig.openModalOnClick) {
