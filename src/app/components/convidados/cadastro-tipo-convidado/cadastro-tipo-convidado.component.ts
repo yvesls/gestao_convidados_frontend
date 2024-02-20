@@ -11,6 +11,7 @@ import { SuccessPopupConfig } from '../../kit/model-config/success-popup-config.
 import { PopupConfiguration } from '../../kit/interfaces/popup-configuration';
 import { distinctUntilChanged, take } from 'rxjs';
 import { EditarTipoConvidadoComponent } from '../editar-tipo-convidado/editar-tipo-convidado.component';
+import { TypeGuest } from '../../kit/model-config/type-guest.class';
 
 @Component({
   selector: 'app-cadastro-tipo-convidado',
@@ -63,8 +64,8 @@ export class CustomActionConfiguration implements ActionConfiguration {
 
   openModalOnClick = true;
 
-  editAction(id: number): void {
-    this.toggleModal();
+  editAction(typeGuest: TypeGuest): void {
+    this.toggleModal(typeGuest);
   }
 
   deleteAction(id: number): void {
@@ -82,7 +83,7 @@ export class CustomActionConfiguration implements ActionConfiguration {
     this.popupService.openPopup(new SuccessPopupConfig());
   }
    
-  private toggleModal(): void {
+  private toggleModal(typeGuest: TypeGuest): void {
     if (this.openModalOnClick) {
       this.modalService.openModal(EditarTipoConvidadoComponent);
     } else {
@@ -103,17 +104,13 @@ class TipoConvidadoGrid {
     { header: 'Ação', field: 'acao' },
   ];
 
-  gridData = [
-    { id: 1, tipoConvidado: 'VIP', acao: this.generateActionIcons(1)},
-    { id: 2, tipoConvidado: 'PISTA', acao: this.generateActionIcons(2)},
-    { id: 3, tipoConvidado: 'CAMAROTE', acao: this.generateActionIcons(3)}
-  ];
+  gridData = [];
 
-  generateActionIcons(id: number): Icon[] {
+  generateActionIcons(typeGuest: TypeGuest): Icon[] {
     if (this.actionConfig.openModalOnClick) {
       return [
-        new Icon(`${this.iconConfig.trashIcon}`, () => this.actionConfig.deleteAction(id)),
-        new  Icon(`${this.iconConfig.penIcon}`, () => this.actionConfig.editAction(id))
+        new Icon(`${this.iconConfig.trashIcon}`, () => this.actionConfig.deleteAction(typeGuest.typeId)),
+        new  Icon(`${this.iconConfig.penIcon}`, () => this.actionConfig.editAction(typeGuest))
       ];
     } else {
       return [];

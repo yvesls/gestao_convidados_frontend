@@ -13,6 +13,8 @@ import { EditarConvidadosComponent } from '../editar-convidados/editar-convidado
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { GuestFilter } from '../../kit/model-config/guest-filter.class';
 import { ConvidadosStore } from '../convidados.store';
+import { Guest } from '../../kit/model-config/guest.class';
+import { GuestService } from 'src/app/services/guest.service';
 
 @Component({
   selector: 'app-lista-convidados',
@@ -24,7 +26,7 @@ export class ListaConvidadosComponent implements OnInit {
   convidadoGrid!: ConvidadoGrid;
   filtroForm!: FormGroup;
 
-  constructor(private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private formBuilder: FormBuilder, private convidadoStore: ConvidadosStore) { }
+  constructor(private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private formBuilder: FormBuilder, private convidadoStore: ConvidadosStore, private guestService: GuestService) { }
 
   ngOnInit(): void {
     this.filtroForm = this.formBuilder.group({
@@ -39,7 +41,7 @@ export class ListaConvidadosComponent implements OnInit {
 
     this.convidadoGrid = new ConvidadoGrid(
       new CustomIconConfiguration(),
-      new CustomActionConfiguration(this.modalService, this.popupService)
+      new CustomActionConfiguration(this.modalService, this.popupService, this.guestService)
     );
 
     this.convidadoStore.findAllByUser().subscribe((guests) => {
@@ -51,7 +53,7 @@ export class ListaConvidadosComponent implements OnInit {
           telefone: guest.guestTel,
           tipoConvidado: guest.typeGuest.typeDescription,
           presente: guest.present ? 'Sim' : 'Não',
-          acao: this.convidadoGrid.generateActionIcons(guest.guestId),
+          acao: this.convidadoGrid.generateActionIcons(guest),
         };
       });
 
@@ -76,13 +78,13 @@ export class CustomIconConfiguration extends DefaultIconConfiguration {
 
 export class CustomActionConfiguration implements ActionConfiguration {
   
-  constructor(private modalService: ModalService, private popupService: PopupService) {
+  constructor(private modalService: ModalService, private popupService: PopupService, private guestService: GuestService) {
   }
 
   openModalOnClick = true;
 
-  editAction(id: number): void {
-    this.toggleModal();
+  editAction(guest: Guest): void {
+    this.toggleModal(guest);
   }
 
   deleteAction(id: number): void {
@@ -100,8 +102,9 @@ export class CustomActionConfiguration implements ActionConfiguration {
     this.popupService.openPopup(new SuccessPopupConfig());
   }
    
-  private toggleModal(): void {
+  private toggleModal(guest: Guest): void {
     if (this.openModalOnClick) {
+      this.guestService.setGuest(guest);
       this.modalService.openModal(EditarConvidadosComponent);
     } else {
       this.modalService.closeModal();
@@ -131,11 +134,11 @@ class ConvidadoGrid {
     this.gridData = data;
   }
 
-  generateActionIcons(id: number): Icon[] {
+  generateActionIcons(guest: Guest): Icon[] {
     if (this.actionConfig.openModalOnClick) {
       return [
-        new Icon(`${this.iconConfig.trashIcon}`, () => this.actionConfig.deleteAction(id)),
-        new  Icon(`${this.iconConfig.penIcon}`, () => this.actionConfig.editAction(id))
+        new Icon(`${this.iconConfig.trashIcon}`, () => this.actionConfig.deleteAction(guest.guestId)),
+        new  Icon(`${this.iconConfig.penIcon}`, () => this.actionConfig.editAction(guest))
       ];
     } else {
       return [];

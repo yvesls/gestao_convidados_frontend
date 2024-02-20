@@ -1,5 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Inject, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Guest } from "../../kit/model-config/guest.class";
+import { GuestService } from "src/app/services/guest.service";
 
 @Component({
   selector: 'app-editar-convidados',
@@ -8,17 +10,25 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 })
 export class EditarConvidadosComponent implements OnInit {
   editarForm!: FormGroup;
+  guestId: Number = NaN;
+  guest: Guest | null = null;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private guestService: GuestService) { }
 
   ngOnInit(): void {
-    this.editarForm = this.formBuilder.group({
-      nomeConvidado: ['', Validators.required],
-      emailConvidado: ['', Validators.email],
-      telefoneConvidado: [''],
-      tipo: [''],
-      presente: [false]
-    });
+    this.guest = this.guestService.getGuest();
+
+    if (this.guest) {
+      this.editarForm = this.formBuilder.group({
+        nomeConvidado: [this.guest.guestName, Validators.required],
+        emailConvidado: [this.guest.guestEmail, Validators.email],
+        telefoneConvidado: [this.guest.guestTel],
+        tipo: [this.guest.typeGuest],
+        presente: [this.guest.present]
+      });
+
+      this.guestId = this.guest.guestId;
+    }
   }
 
   onSubmit() {
