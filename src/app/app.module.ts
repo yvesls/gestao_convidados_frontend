@@ -17,8 +17,8 @@ import { ModalConfigComponent } from './components/kit/modal-config/modal-config
 import { ModalService } from "./services/modal.service";
 import { PopupComponent } from './components/kit/popup/popup.component';
 import { EditarConvidadosComponent } from "./components/convidados/editar-convidados/editar-convidados.component";
-import { EditarTipoConvidadoComponent } from "./components/convidados/editar-tipo-convidado/editar-tipo-convidado.component";
-import { CadastroTipoConvidadoComponent } from "./components/convidados/cadastro-tipo-convidado/cadastro-tipo-convidado.component";
+import { EditarTipoConvidadoComponent } from "./components/convidados/tipo-convidados/editar-tipo-convidado/editar-tipo-convidado.component";
+import { CadastroTipoConvidadoComponent } from "./components/convidados/tipo-convidados/cadastro-tipo-convidado/cadastro-tipo-convidado.component";
 
 @NgModule({
     declarations: [AppComponent, MenuLateralComponent, HomeComponent, ListaConvidadosComponent, CadastroConvidadosComponent, CadastroTipoConvidadoComponent, BreadcrumbComponent, LoginComponent, GridComponent, ModalConfigComponent, PopupComponent, EditarConvidadosComponent, EditarTipoConvidadoComponent],

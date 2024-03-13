@@ -1,17 +1,19 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuStateService } from 'src/app/services/menu-state.service';
-import { DefaultIconConfiguration } from '../../kit/abstracts/default-icon-configuration.class';
-import { ActionConfiguration } from '../../kit/interfaces/action-configuration';
-import { IconConfiguration } from '../../kit/interfaces/icon-configuration';
+import { DefaultIconConfiguration } from '../../../kit/abstracts/default-icon-configuration.class';
+import { ActionConfiguration } from '../../../kit/interfaces/action-configuration';
+import { IconConfiguration } from '../../../kit/interfaces/icon-configuration';
 import { ModalService } from 'src/app/services/modal.service';
 import { PopupService } from 'src/app/services/popup.service';
-import { DeletePopupConfig } from '../../kit/model-config/delete-popup-config.class';
-import { SuccessPopupConfig } from '../../kit/model-config/success-popup-config.class';
-import { PopupConfiguration } from '../../kit/interfaces/popup-configuration';
+import { DeletePopupConfig } from '../../../kit/model-config/delete-popup-config.class';
+import { SuccessPopupConfig } from '../../../kit/model-config/success-popup-config.class';
+import { PopupConfiguration } from '../../../kit/interfaces/popup-configuration';
 import { distinctUntilChanged, take } from 'rxjs';
 import { EditarTipoConvidadoComponent } from '../editar-tipo-convidado/editar-tipo-convidado.component';
-import { TypeGuest } from '../../kit/model-config/type-guest.class';
+import { TypeGuest } from '../../../kit/model-config/type-guest.class';
+import { TipoConvidadosStore } from '../tipo-convidados.store';
+import { TypeGuestService } from 'src/app/services/type-guest.service';
 
 @Component({
   selector: 'app-cadastro-tipo-convidado',
@@ -26,7 +28,7 @@ export class CadastroTipoConvidadoComponent implements OnInit {
 
   tipoConvidadoGrid!: TipoConvidadoGrid;
 
-  constructor(private formBuilder: FormBuilder, private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService) {
+  constructor(private formBuilder: FormBuilder, private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private typeGuestStore: TipoConvidadosStore, private typeGuestService: TypeGuestService) {
   }
 
   ngOnInit(): void {
@@ -40,9 +42,20 @@ export class CadastroTipoConvidadoComponent implements OnInit {
 
     this.tipoConvidadoGrid = new TipoConvidadoGrid(
       new CustomIconConfiguration(),
-      new CustomActionConfiguration(this.modalService, this.popupService)
+      new CustomActionConfiguration(this.modalService, this.popupService, this.typeGuestService)
     );
     
+    this.typeGuestStore.findAllByUser().subscribe((typeGuests) => {
+      const data = typeGuests.map((type) => {
+        return {
+          id: type.typeId,
+          tipoConvidado: type.typeDescription,
+          acao: this.tipoConvidadoGrid.generateActionIcons(type),
+        };
+      });
+
+      this.tipoConvidadoGrid.setGridData(data);
+    });
   }
 
   onSubmit() {
@@ -59,7 +72,7 @@ export class CustomIconConfiguration extends DefaultIconConfiguration {
 
 export class CustomActionConfiguration implements ActionConfiguration {
   
-  constructor(private modalService: ModalService, private popupService: PopupService) {
+  constructor(private modalService: ModalService, private popupService: PopupService, private typeGuestService: TypeGuestService) {
   }
 
   openModalOnClick = true;
@@ -85,6 +98,7 @@ export class CustomActionConfiguration implements ActionConfiguration {
    
   private toggleModal(typeGuest: TypeGuest): void {
     if (this.openModalOnClick) {
+      this.typeGuestService.setTypeGuest(typeGuest);
       this.modalService.openModal(EditarTipoConvidadoComponent);
     } else {
       this.modalService.closeModal();
@@ -105,6 +119,10 @@ class TipoConvidadoGrid {
   ];
 
   gridData = [];
+
+  setGridData(data: any) {
+    this.gridData = data;
+  }
 
   generateActionIcons(typeGuest: TypeGuest): Icon[] {
     if (this.actionConfig.openModalOnClick) {

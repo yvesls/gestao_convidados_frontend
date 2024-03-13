@@ -1,34 +1,34 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Guest } from '../kit/model-config/guest.class';
+import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { TypeGuest } from '../../kit/model-config/type-guest.class';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ConvidadosStore {
- private readonly API = "http://localhost:8080/guest";
+export class TipoConvidadosStore {
+ private readonly API = "http://localhost:8080/typeguest";
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  findById(gId: number): Observable<Guest> {
+  findById(gId: number): Observable<TypeGuest> {
     const headers = this.authService.getAuthTokenInNewHeader();
     const params = new HttpParams().set("gId", gId.toString());
-    return this.http.get<Guest>(this.API, { params, headers });
+    return this.http.get<TypeGuest>(this.API, { params, headers });
   }
 
-  findAllByUser(): Observable<Guest[]> {
+  findAllByUser(): Observable<TypeGuest[]> {
     const headers = this.authService.getAuthTokenInNewHeader();
-    return this.http.get<Guest[]>(`${this.API}/user`, { headers });
+    return this.http.get<TypeGuest[]>(`${this.API}/user`, { headers });
   }
 
-  create(guest: Guest): Observable<void> {
+  create(guest: TypeGuest): Observable<void> {
     const headers = this.authService.getAuthTokenInNewHeader();
     return this.http.put<void>(this.API, { headers, guest });
   }
 
-  update(guest: Guest, gId: number): Observable<void> {
+  update(guest: TypeGuest, gId: number): Observable<void> {
     const headers = this.authService.getAuthTokenInNewHeader();
     let params = new HttpParams().set("gId", gId);
     return this.http.put<void>(this.API, { headers, params, guest });

@@ -1,15 +1,17 @@
 import { Component, ElementRef, Input, NgZone, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuStateService } from 'src/app/services/menu-state.service';
-import { DefaultIconConfiguration } from '../../kit/abstracts/default-icon-configuration.class';
-import { ActionConfiguration } from '../../kit/interfaces/action-configuration';
-import { IconConfiguration } from '../../kit/interfaces/icon-configuration';
+import { DefaultIconConfiguration } from '../../../kit/abstracts/default-icon-configuration.class';
+import { ActionConfiguration } from '../../../kit/interfaces/action-configuration';
+import { IconConfiguration } from '../../../kit/interfaces/icon-configuration';
 import { ModalService } from 'src/app/services/modal.service';
 import { PopupService } from 'src/app/services/popup.service';
-import { DeletePopupConfig } from '../../kit/model-config/delete-popup-config.class';
-import { SuccessPopupConfig } from '../../kit/model-config/success-popup-config.class';
-import { PopupConfiguration } from '../../kit/interfaces/popup-configuration';
+import { DeletePopupConfig } from '../../../kit/model-config/delete-popup-config.class';
+import { SuccessPopupConfig } from '../../../kit/model-config/success-popup-config.class';
+import { PopupConfiguration } from '../../../kit/interfaces/popup-configuration';
 import { distinctUntilChanged, take } from 'rxjs';
+import { TypeGuestService } from 'src/app/services/type-guest.service';
+import { TypeGuest } from 'src/app/components/kit/model-config/type-guest.class';
 
 @Component({
   selector: 'app-editar-tipo-convidado',
@@ -21,19 +23,22 @@ export class EditarTipoConvidadoComponent implements OnInit {
 
   editarForm!: FormGroup;
   isCollapsed: boolean = false;
+  typeGuest!: TypeGuest | null;
 
   tipoConvidadoGrid!: TipoConvidadoGrid;
 
-  constructor(private formBuilder: FormBuilder, private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService) {
+  constructor(private formBuilder: FormBuilder, private menuStateService: MenuStateService, private modalService: ModalService, private popupService: PopupService, private typeGuestService: TypeGuestService) {
   }
 
   ngOnInit(): void {
     this.menuStateService.isCollapsed$.subscribe((isCollapsed) => {
       this.isCollapsed = isCollapsed;
     });
+
+    this.typeGuest = this.typeGuestService.getTypeGuest();
     
     this.editarForm = this.formBuilder.group({
-      tipoConvidado: ['', Validators.required],
+      tipoConvidado: [this.typeGuest?.typeDescription, Validators.required],
     });
 
     this.tipoConvidadoGrid = new TipoConvidadoGrid(
@@ -45,6 +50,8 @@ export class EditarTipoConvidadoComponent implements OnInit {
 
   onSubmit() {
     if (this.editarForm.valid) {
+      this.typeGuest!.typeDescription = this.editarForm.value.tipoConvidado;
+      console.log(this.typeGuest)
     } else {
     }
   }

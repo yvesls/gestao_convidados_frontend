@@ -17,11 +17,12 @@
                 <div class="p-0 m-0 col-2 py-3">
                     <label for="tipoConvidado" class="visually-hidden">Tipo de Convidado</label>
                     <select class="p-0 m-0 form-select form-control" id="tipoConvidado" formControlName="tipo" aria-label="Selecione o tipo de convidado">
+                        <option *ngFor="let type of typeGuests" [value]="type.typeId">{{ type.typeDescription }}</option>
                     </select>
                 </div>
                 <div class="p-0 m-0 col-4 py-3">
-                    <label for="isPresente" class="visually-hidden pr-3">Confirmar presença manualmente</label>
-                    <input class="" id="isPresente" formControlName="presente" type="checkbox"/>
+                    <label for="presente" class="visually-hidden pr-3">Presente</label>
+                    <input class="" id="presente" formControlName="presente" type="checkbox"/>
                 </div>
                 <div class="p-0 m-0 col-3 pt-3">
                     <button type="submit" class="buttonPadrao buttonVerde" (click)="onSubmit()">Salvar</button>

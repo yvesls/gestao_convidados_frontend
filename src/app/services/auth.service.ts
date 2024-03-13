@@ -1,3 +1,4 @@
+import { HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -13,8 +14,13 @@ export class AuthService {
     localStorage.setItem(this.authTokenKey, token);
   }
 
-  getAuthToken(): string | null {
-    const token = localStorage.getItem(this.authTokenKey);
-    return token !== null ? token : this.defaultAuthToken;
+  getAuthTokenInNewHeader(): HttpHeaders {
+    let token = localStorage.getItem(this.authTokenKey);
+    token !== null ? token : this.defaultAuthToken;
+    if (!token) {
+      throw new Error('Token de autorização não encontrado');
+    }
+    return new HttpHeaders().set('Authorization', token);
   }
+
 }
